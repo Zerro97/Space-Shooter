@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
@@ -48,13 +49,15 @@ public class Player extends GameObject {
 	}
 
 	public void render(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
 		try {
+			//Graphics2D g2d = (Graphics2D) g;
 			image = ImageIO.read(getClass().getResource("/SpaceShip.png"));
-			g2d = (Graphics2D) image.getGraphics();
+
+			//g2d = (Graphics2D) image.getGraphics();
+			AffineTransform old = ((Graphics2D) g).getTransform();
 			((Graphics2D) g).rotate(angle, x+width/2, y+height/2);
 			g.drawImage(image, (int)x, (int)y, null);
-			((Graphics2D) g).rotate(-angle, x+width/2, y+height/2);
+			((Graphics2D) g).setTransform(old);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

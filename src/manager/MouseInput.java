@@ -26,7 +26,7 @@ public class MouseInput extends MouseAdapter {
 
 	}
 
-	public void mousePressed(MouseEvent e) {
+	public synchronized void mousePressed(MouseEvent e) {
 		int mx = e.getX();
 		int my = e.getY();
 
@@ -84,6 +84,9 @@ public class MouseInput extends MouseAdapter {
 
 	}
 
+	/*
+	 * Private helper method to be used in mouse pressed
+	 */
 	private boolean mouseOver(int mx, int my, int x, int y, int width, int height) {
 		if (mx > x && mx < x + width) {
 			if (my > y && my < y + height) {
