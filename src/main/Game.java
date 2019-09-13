@@ -32,11 +32,11 @@ public class Game extends Canvas implements Runnable {
 	private boolean isRunning;
 
 	// Management Objects
-	private Handler handler;
+	private volatile Handler handler;
 	private Spawn spawner;
 	private MouseInput mouseInput;
 	private MouseMotion mouseMotion;
-	private KeyInput keyInput;
+	private volatile KeyInput keyInput;
 	public STATE gameState = STATE.Menu;
 
 	// Game Screen
@@ -64,7 +64,7 @@ public class Game extends Canvas implements Runnable {
 		this.addKeyListener(keyInput);
 
 		map = new GameMap(WIDTH, HEIGHT);
-
+		
 		start();
 	}
 
@@ -112,6 +112,7 @@ public class Game extends Canvas implements Runnable {
 		menu.update();
 		mouseInput.update();
 		mouseMotion.update();
+		keyInput.update();
 
 		if (gameState == STATE.Game) {
 			hud.update();
