@@ -35,31 +35,31 @@ public abstract class GameObject {
 	public abstract void render(Graphics g);
 	public abstract Rectangle getBounds();
 	
-	public void setX(float x) {
+	public synchronized void setX(float x) {
 		this.x = x;
 	}
 	
-	public void setY(float y) {
+	public synchronized void setY(float y) {
 		this.y = y;
 	}
 	
-	public void setId(ID id) {
+	public synchronized void setId(ID id) {
 		this.id = id;
 	}
 	
-	public void setVelX(float velX) {
+	public synchronized void setVelX(float velX) {
 		this.velX = velX;
 	}
 	
-	public void setVelY(float velY) {
+	public synchronized void setVelY(float velY) {
 		this.velY = velY;
 	}
 	
-	public void setHealth(int health) {
+	public synchronized void setHealth(int health) {
 		this.health = health;
 	}
 	
-	public void setAngle(double angle) {
+	public synchronized void setAngle(double angle) {
 		this.angle = angle;
 	}
 	

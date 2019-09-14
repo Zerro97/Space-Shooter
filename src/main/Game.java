@@ -32,11 +32,11 @@ public class Game extends Canvas implements Runnable {
 	private boolean isRunning;
 
 	// Management Objects
-	private volatile Handler handler;
+	private Handler handler;
 	private Spawn spawner;
 	private MouseInput mouseInput;
 	private MouseMotion mouseMotion;
-	private volatile KeyInput keyInput;
+	private KeyInput keyInput;
 	public STATE gameState = STATE.Menu;
 
 	// Game Screen
@@ -44,6 +44,7 @@ public class Game extends Canvas implements Runnable {
 	public Menu menu;
 	public HUD hud;
 
+	// Game States (Determines which screen to render)
 	public enum STATE {
 		Menu, Help, Game, End
 	};
@@ -59,19 +60,24 @@ public class Game extends Canvas implements Runnable {
 		mouseMotion = new MouseMotion(this, handler);
 		keyInput = new KeyInput(handler);
 
+		// Add event listeners
 		this.addMouseMotionListener(mouseMotion);
 		this.addMouseListener(mouseInput);
 		this.addKeyListener(keyInput);
 
+		// Adds black background 
 		map = new GameMap(WIDTH, HEIGHT);
 		
-		start();
+		//start();
+		isRunning = true;
+		run();
 	}
 
 	public synchronized void start() {
 		thread = new Thread(this);
+		thread.setName("thr1");
 		isRunning = true;
-
+		
 		thread.start();
 	}
 
@@ -90,6 +96,9 @@ public class Game extends Canvas implements Runnable {
 		double fps = 60.0;
 		double optimal = 1000000000 / fps;
 		double delta = 0;
+		
+		long timer = System.currentTimeMillis();
+	    int frames = 0 ;
 
 		while (isRunning) {
 			now = System.nanoTime();
@@ -103,6 +112,13 @@ public class Game extends Canvas implements Runnable {
 			if (isRunning) {
 				render();
 			}
+			frames++;
+
+	        if(System.currentTimeMillis() - timer > 1000) {
+	            timer += 1000;
+	            //System.out.println("FPS: " + frames);
+	            frames = 0;
+	        }
 		}
 		stop();
 	}

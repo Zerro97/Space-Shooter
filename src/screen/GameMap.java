@@ -1,3 +1,15 @@
+/**
+ * GameMap class renders black background to the screen by getting frame's width and height.
+ * 
+ * Clamp:
+ * Clamp method is used to keep the game objects within the bounds. 
+ * Takes in min, max bound limit and the position of object and return min, max if exceeding bound
+ * 
+ * outOfBound:
+ * Checks if the object is within the map's bound
+ * 
+ */
+
 package screen;
 
 import java.awt.Color;

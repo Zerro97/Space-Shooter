@@ -4,6 +4,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
+import main.Game.STATE;
+
 public class KeyInput extends KeyAdapter{
 	private Handler handler;
 	public HashMap<Integer, Boolean> keys;
@@ -19,6 +21,7 @@ public class KeyInput extends KeyAdapter{
 	}
 	
 	public void update() {
+		//System.out.println("Key Check");
 		GameObject tempObject = null;
 		
 		for(int i = 0; i < handler.list.size(); i++) {
@@ -28,6 +31,7 @@ public class KeyInput extends KeyAdapter{
 				tempObject.setVelX(0);
 				tempObject.setVelY(0);
 				
+				System.out.println(keys.get(KeyEvent.VK_W));
 				if(keys.get(KeyEvent.VK_W)) {
 					tempObject.setVelY(-5);
 				}
@@ -44,11 +48,14 @@ public class KeyInput extends KeyAdapter{
 		}
 	}
 	
+	@Override
 	public void keyPressed(KeyEvent e) {
+		System.out.println("Pressed: " + e.getKeyChar());
 		keys.put(e.getKeyCode(), true);
 	}
 	
 	public void keyReleased(KeyEvent e) {
+		System.out.println("Released:  " + e.getKeyChar());
 		keys.put(e.getKeyCode(), false);
 		
 		/*for(int i = 0; i < handler.list.size(); i++) {

@@ -39,12 +39,15 @@ public class Player extends GameObject {
 	}
 	
 	public void update() {
+		// Update player's position
 		x += velX;
 		y += velY;
 		
+		// Prevent player from getting out of map bound
 		x = GameMap.clamp(x, Game.WIDTH - width, 0);
 		y = GameMap.clamp(y, Game.HEIGHT - height, 0);
 		
+		// Lowers player HP if collided
 		collision();
 	}
 
