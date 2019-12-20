@@ -13,6 +13,7 @@ import manager.GameObject;
 import manager.Handler;
 import manager.ID;
 import manager.KeyInput;
+import manager.KeyInput2;
 import manager.MouseInput;
 import manager.MouseMotion;
 import manager.Spawn;
@@ -36,7 +37,9 @@ public class Game extends Canvas implements Runnable {
 	private Spawn spawner;
 	private MouseInput mouseInput;
 	private MouseMotion mouseMotion;
-	private KeyInput keyInput;
+	//private KeyInput keyInput;
+	private KeyInput2 keyInput2;
+	
 	public STATE gameState = STATE.Menu;
 
 	// Game Screen
@@ -51,26 +54,28 @@ public class Game extends Canvas implements Runnable {
 
 	public Game() {
 		frame = new Frame(WIDTH, HEIGHT, this);
-
+		
 		handler = new Handler();
 		hud = new HUD();
 		spawner = new Spawn(handler, hud);
 		menu = new Menu(this, hud);
 		mouseInput = new MouseInput(this, handler, hud);
 		mouseMotion = new MouseMotion(this, handler);
-		keyInput = new KeyInput(handler);
+		//keyInput = new KeyInput(handler);
+		keyInput2 = new KeyInput2(handler, frame.panel);
+		keyInput2.setUp();
 
 		// Add event listeners
 		this.addMouseMotionListener(mouseMotion);
 		this.addMouseListener(mouseInput);
-		this.addKeyListener(keyInput);
+		//this.addKeyListener(keyInput);
 
 		// Adds black background 
 		map = new GameMap(WIDTH, HEIGHT);
 		
-		//start();
-		isRunning = true;
-		run();
+		start();
+		//isRunning = true;
+		//run();
 	}
 
 	public synchronized void start() {
@@ -128,7 +133,8 @@ public class Game extends Canvas implements Runnable {
 		menu.update();
 		mouseInput.update();
 		mouseMotion.update();
-		keyInput.update();
+		//keyInput.update();
+		keyInput2.update();
 
 		if (gameState == STATE.Game) {
 			hud.update();
