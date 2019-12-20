@@ -1,5 +1,5 @@
 # Description
-This is a game application using java and leveraging awt and swing API.
+This is a java game application leveraging awt and swing API.
 
 ### Start Screen
 ![Screen Shots](/images/image1.png) <!-- .element height="50%" width="50%" -->
