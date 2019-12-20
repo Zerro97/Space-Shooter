@@ -1,5 +1,5 @@
 # Description
-This is a java game application leveraging awt and swing API. It utilizes multi-threading and triple buffering for rendering graphics
+This is a java game application leveraging awt and swing API. It utilizes multi-threading, a game loop using variable time step and triple buffering for rendering graphics
 
 ### Start Screen
 <img src="https://github.com/Zerro97/Space-Shooter/blob/master/images/image1.png" alt="Start Screen" height="350px" width="500px"/>
